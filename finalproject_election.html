@@ -1,0 +1,489 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <style>
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+        }
+        
+        circle {
+            opacity:0.6;
+            stroke: #cccccc;
+            fill: #cccccc;
+            background-color: #cccccc;
+        }
+        
+        /* Use style classes to set colors by winner */
+        
+                      
+        .Ted_Cruz {fill:#FFB6C1; background-color:#FFB6C1;}                                   
+        .Donald_Trump{fill: #FFDAB9; background-color: #FFDAB9;}  
+        .John_Kasich {fill:#87CEEB; background-color:#87CEEB;} 
+        .Hillary_Clinton {fill: #DA70D6; background-color:#DA70D6;}                   
+        .Bernie_Sanders {fill:  #C0C0C0; background-color:  #C0C0C0;}                    
+                        
+           
+         #controls {
+            position: absolute;
+            top: 95px;
+            left: 20px;
+            width: 1100px;
+            margin: 10px;
+            font-size: 28px;
+        }
+        #winnername span {
+            padding: 5px;
+            margin: 5px;
+            font-size: 20px;
+            font-weight:bolder;
+            display: inline-block;
+            cursor: pointer;
+            font-family: Arial;
+        }
+        
+        #states option {
+        font-size: 24px;
+           margin: 3px;     
+        } 
+        
+                
+    </style>
+    
+  
+    
+    
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        
+        //change the path when open
+        var data;
+        function getdata(){
+            d3.csv("C:/Users/sony/Desktop/uva/2016spring/data visualization/finalprojectelection/Zhiwei_Zhang",
+            function(d){
+                data = d;
+                draw();
+                listStates();
+                listWinner();
+                
+            })
+        }
+        
+        var myline
+        var mytext
+        function drawline(i) {
+        var target = d3.select("#electionresults");
+            if(i==0){
+               if(myline){myline.remove();}
+                if(maxline){maxline.remove();}
+                if(mytext){mytext.remove();}
+               myline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",1050)
+                .attr("y2",1050);
+                mytext = target.append("text").attr("x",1300).attr("y",1050).style("font-size", "30px").style("opacity", 0.9).text("18.50%");
+            }
+            if(i==1){
+                 if(myline){myline.remove();}
+                if(mytext){mytext.remove();}
+               myline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",980)
+                .attr("y2",980);
+                 mytext = target.append("text").attr("x",1250).attr("y",980).style("font-size", "30px").style("opacity", 0.9).text("$43704.38");
+
+            }
+            if(i==2){
+                if(myline){myline.remove();}
+                if(mytext){mytext.remove();}
+               myline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",1220)
+                .attr("y2",1220);
+                mytext = target.append("text").attr("x",1300).attr("y",1220).style("font-size", "30px").style("opacity", 0.9).text("9.08%");
+            }
+            if(i==3){
+                if(myline){myline.remove();}
+                if(mytext){mytext.remove();}
+               myline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",1320)
+                .attr("y2",1320);
+                mytext = target.append("text").attr("x",1300).attr("y",1320).style("font-size", "30px").style("opacity", 0.9).text("1.03%");
+            }
+             if(i==4){
+                 if(myline){myline.remove();}
+                 if(mytext){mytext.remove();}
+               myline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",1250)
+                .attr("y2",1250);
+                  mytext = target.append("text").attr("x",1300).attr("y",1250).style("font-size", "30px").style("opacity", 0.9).text("11.38%");
+            }
+              if(i==5){
+                  if(myline){myline.remove();}
+                  if(mytext){mytext.remove();}
+               myline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",600)
+                .attr("y2",600);
+                  mytext = target.append("text").attr("x",1300).attr("y",600).style("font-size", "30px").style("opacity", 0.9).text("76.17%");
+              }
+              if(i==6){
+                  if(myline){myline.remove();}
+                  if(mytext){mytext.remove();}
+               myline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",1350)
+                .attr("y2",1350);
+                mytext = target.append("text").attr("x",1280).attr("y",1350).style("font-size", "30px").style("opacity", 0.9).text("5877.74");
+
+            }
+            if(i==7){
+                if(myline){myline.remove();}
+                if(mytext){mytext.remove();}
+               myline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",1020)
+                .attr("y2",1020);
+                mytext = target.append("text").attr("x",1300).attr("y",1020).style("font-size", "30px").style("opacity", 0.9).text("17.81%");
+            }
+            if(i==8){
+                if(myline){myline.remove();}
+                if(mytext){mytext.remove();}
+               myline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",1380)
+                .attr("y2",1380);
+                 mytext = target.append("text").attr("x",1270).attr("y",1380).style("font-size", "30px").style("opacity", 0.9).text("35306.86");
+            }
+            
+        }
+        
+        
+        var maxline
+        var maxtext
+        function max(i) {
+        var target = d3.select("#electionresults");
+            if(i==0){
+               if(maxline){maxline.remove();}
+                if(maxtext){maxtext.remove();}
+               maxline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",530)
+                .attr("y2",530);
+                maxtext = target.append("text").attr("x",1300).attr("y",530).style("font-size", "30px").style("opacity", 0.9).text("58.3%");
+            }
+            
+            if(i==1){
+                 if(maxline){maxline.remove();}
+                if(maxtext){maxtext.remove();}
+               maxline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",490)
+                .attr("y2",490);
+                 maxtext = target.append("text").attr("x",1270).attr("y",490).style("font-size", "30px").style("opacity", 0.9).text("$101591");
+
+            }
+            if(i==2){
+                if(maxline){maxline.remove();}
+                if(maxtext){maxtext.remove();}
+               maxline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",435)
+                .attr("y2",435);
+                maxtext = target.append("text").attr("x",1300).attr("y",435).style("font-size", "30px").style("opacity", 0.9).text("95.8%");
+            }
+            if(i==3){
+                if(maxline){maxline.remove();}
+                if(maxtext){maxtext.remove();}
+               maxline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",630)
+                .attr("y2",630);
+                maxtext = target.append("text").attr("x",1300).attr("y",630).style("font-size", "30px").style("opacity", 0.9).text("12.9%");
+            }
+             if(i==4){
+                 if(maxline){maxline.remove();}
+                 if(maxtext){maxtext.remove();}
+               maxline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",550)
+                .attr("y2",550);
+                maxtext = target.append("text").attr("x",1300).attr("y",550).style("font-size", "30px").style("opacity", 0.9).text("85.1%");
+            }
+              if(i==5){
+                  if(maxline){maxline.remove();}
+                  if(maxtext){maxtext.remove();}
+               maxline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",430)
+                .attr("y2",430);
+                  maxtext = target.append("text").attr("x",1300).attr("y",430).style("font-size", "30px").style("opacity", 0.9).text("98.6%");
+              }
+              if(i==6){
+                  if(maxline){maxline.remove();}
+                  if(maxtext){maxtext.remove();}
+               maxline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",670)
+                .attr("y2",670);
+                maxtext = target.append("text").attr("x",1300).attr("y",670).style("font-size", "30px").style("opacity", 0.9).text("271518");
+
+            }
+            if(i==7){
+                if(maxline){maxline.remove();}
+                if(maxtext){maxtext.remove();}
+               maxline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",490)
+                .attr("y2",490);
+                maxtext = target.append("text").attr("x",1300).attr("y",490).style("font-size", "30px").style("opacity", 0.9).text("44.9%");
+            }
+            if(i==8){
+                if(maxline){maxline.remove();}
+                if(maxtext){maxtext.remove();}
+               maxline = target.append("line").style("stroke","black").style("stroke-width", 5).style("stroke-opacity",0.7).style("stroke-dasharray", ("7, 7"))
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",520)
+                .attr("y2",520);
+                maxtext = target.append("text").attr("x",1270).attr("y",520).style("font-size", "30px").style("opacity", 0.9).text("1682870");
+            }
+            
+        }
+        
+        //draw circles
+        var baseline, meridian, hScale, vScale, rScale;   
+        function draw() {
+                var target = d3.select("#electionresults");
+                var targetWidth = +target.attr("width");
+            
+          target.append("line").style("stroke","black").style("stroke-width",3)
+                .attr("x1",100)
+                .attr("x2",1400)
+                .attr("y1",1415)
+                .attr("y2",1415);
+           target.append("line").style("stroke","black").style("stroke-width",5)
+                .attr("x1",1400)
+                .attr("x2",1400)
+                .attr("y1",400)
+                .attr("y2",1410);
+     
+            baseline = +target.attr("height")-100;
+            meridian = 60;
+            hScale = 22;
+            vScale = 10;
+            rScale = 20;
+            
+            var a = target.selectAll("g")
+                    .data(data)
+                .enter().append("g");
+                    
+            a.append("circle")
+                .attr("cx",function(d) {
+                        return targetWidth + ((meridian + +d["longitude"]) * hScale);
+                        })
+                .attr("cy",function(d) {
+                        return baseline - (+d["density"].replace(/,/g,'')/vScale);
+                        })
+                .attr("r",function(d) {
+                        return 1+ +d["VoteR"].replace(/,/g,'')*rScale;
+                        })
+                .attr("class",function(d) {
+                        return d["state_abbreviation"] + " " + d["Rwinner"].replace(/ /g,'_');
+                        });
+            a.append("circle")
+                .attr("cx",function(d) {
+                        return targetWidth + ((meridian + +d["longitude"]) * hScale) + 10;
+                        })
+                .attr("cy",function(d) {
+                        return baseline - (+d["density"].replace(/,/g,'')/vScale);
+                        })
+                .attr("r",function(d) {
+                        return 1+ +d["VoteD"].replace(/,/g,'')*rScale;
+                        })
+                .attr("class",function(d) {
+                        return d["state_abbreviation"] + " " + d["Dwinner"].replace(/ /g,'_');
+                        });
+            
+        }
+   
+       
+    
+            function dimAll() {
+            var circles = d3.selectAll("circle")
+                .style("opacity",0.001);
+        }
+            function showAll() {
+            var circles = d3.selectAll("circle")
+                .style("opacity",0.6);
+        }
+        
+            function filter(key) {
+            dimAll();
+            var circles = d3.selectAll("."+key)
+                .style("opacity",0.6);
+        }
+        
+        
+            function changeY(field,factor) {
+            var circles = d3.selectAll("circle").transition().duration(1000)
+                .attr("cy",function(d){
+                    return baseline - (+d[field].replace(/,/g,'')/(vScale/factor));
+                });
+            
+        }
+            function listStates() {
+            d3.select("#states").selectAll("option")
+                    .data(d3.map(data, function(d) {return d["state_abbreviation"];}).keys())
+                    .enter().append("option")
+                    .text(function(d) {return d;})
+                    .attr("value",function(d) {return d;});
+                
+        }
+
+            function listWinner() {
+            var w = d3.select("#winnername").selectAll("g") 
+                    .data(data)
+                    .enter().append("g");
+               w.append("span")
+                 .data(d3.map(data, function(d) {return d["Dwinner"];}).keys())
+                 .text(function(d) {return d;})
+                    .attr("class",function(d) {return d.replace(/ /g,'_');})
+                    .attr("onclick",function(d) {return "filter('" + d.replace(/ /g,'_') + "')"})
+                w.append("span")
+                 .data(d3.map(data, function(d) {return d["Rwinner"];}).keys())
+                 .text(function(d) {return d;})
+                    .attr("class",function(d) {return d.replace(/ /g,'_');})
+                    .attr("onclick",function(d) {return "filter('" + d.replace(/ /g,'_') + "')"});         
+            }
+        
+           
+    </script>
+
+    
+          
+    
+</head>
+<body onload="getdata()">
+    <svg id="electionresults" width="1500" height="1500" style="font-size:30px;font-weight:bolder;font-family:Arial;">
+        <text x="100" y="50" fill="tomato" style="font-size:40px;font-weight:bolder;">How do people vote based on demographics of their county?</text>
+        <text x="125" y="100" fill="tomato" style="font-size:40px;font-weight:bolder;">Does each candidate appeal to specific group of voters?</text>
+        <text x="100" y="1450" fill="black" style="font-size:30px;font-weight:bolder;">State</text>
+        <text id="scale" x="1500" y="380" text-align=rt style="font-size:35px;font-weight:bolder;text-anchor:end;">Population Density </text>
+        
+     
+        <text x="1100" y="1420" transform="rotate(-90 1100,1420)" text-anchor="end">VA</text>
+        <text x="900" y="1420" transform="rotate(-90 900,1420)" text-anchor="end">AL</text>
+        <text x="400" y="1420" transform="rotate(-90 400,1420)" text-anchor="end">AZ</text>
+        <text x="550" y="1420" transform="rotate(-90 550,1420)" text-anchor="end">CO</text>
+        <text x="1050" y="1420" transform="rotate(-90 1050,1420)" text-anchor="end">FL</text>
+        <text x="1000" y="1420" transform="rotate(-90 1000,1420)" text-anchor="end">GA</text>
+        <text x="300" y="1420" transform="rotate(-90 300,1420)" text-anchor="end">ID</text>
+        <text x="870" y="1420" transform="rotate(-90 870,1420)" text-anchor="end">IL</text>
+        <text x="810" y="1420" transform="rotate(-90 810,1420)" text-anchor="end">IA</text>
+        <text x="950" y="1420" transform="rotate(-90 950,1420)" text-anchor="end">KY</text>
+        <text x="1300" y="1420" transform="rotate(-90 1300,1420)" text-anchor="end">ME</text>
+        <text x="1220" y="1420" transform="rotate(-90 1220,1420)" text-anchor="end">MA</text>
+        <text x="950" y="1460" transform="rotate(-90 950,1460)" text-anchor="end">MI</text>
+        <text x="870" y="1460" transform="rotate(-90 870,1460)" text-anchor="end">MS</text>
+        <text x="780" y="1420" transform="rotate(-90 780,1420)" text-anchor="end">MO</text>
+        <text x="650" y="1420" transform="rotate(-90 650,1420)" text-anchor="end">NE</text>
+        <text x="270" y="1420" transform="rotate(-90 270,1420)" text-anchor="end">NV</text>
+        <text x="1250" y="1420" transform="rotate(-90 1250,1420)" text-anchor="end">NH</text>
+        <text x="1100" y="1460" transform="rotate(-90 1100,1460)" text-anchor="end">NC</text>
+        <text x="1000" y="1460" transform="rotate(-90 1000,1460)" text-anchor="end">OH</text>
+        <text x="700" y="1420" transform="rotate(-90 700,1420)" text-anchor="end">OK</text>
+        <text x="1050" y="1460" transform="rotate(-90 1050,1460)" text-anchor="end">SC</text>
+        <text x="700" y="1460" transform="rotate(-90 700,1460)" text-anchor="end">TX</text>
+         <text x="350" y="1420" transform="rotate(-90 350,1420)" text-anchor="end">UT</text>
+        
+            
+    </svg>
+    
+    <script>
+        function scale(i){
+            if(i==0){
+                document.getElementById("scale").innerHTML="Bachelor degree or higher percent";
+            }
+            if(i==1){
+              document.getElementById("scale").innerHTML="Median house income($)";
+        }
+             if(i==2){
+              document.getElementById("scale").innerHTML="Hispanic percent";
+        }
+             if(i==3){
+              document.getElementById("scale").innerHTML="Asian percent";
+             }
+            if(i==4){
+              document.getElementById("scale").innerHTML="Black percent";
+             }
+            if(i==5){
+              document.getElementById("scale").innerHTML="White percent";
+             }
+            if(i==6){
+              document.getElementById("scale").innerHTML="Veteran population";
+             }
+            if(i==7){
+              document.getElementById("scale").innerHTML="Persons below poverty level, percent";
+             }
+            if(i==8){
+              document.getElementById("scale").innerHTML="Housing Units";
+             }
+        }
+    </script>    
+        
+    <div id="controls">
+        <p>
+            <button onclick="showAll()" style="font-size:8px;">Show All</button>
+           <!-- <button onclick="dimAll()" style="font-size:8px;">Dim All</button>-->
+            <button onclick="window.open('education.html','MsgWindow', 'width=800,height=600,top=200,left=1000');">Detail Education</button>
+            <button onclick="window.open('hispanic.html','MsgWindow', 'width=800,height=600,top=200,left=1000');">Detail Hispanic</button>
+            <button onclick="window.open('housingunit.html','MsgWindow', 'width=800,height=600,top=200,left=1000');">Detail Houseingunit</button>
+              <button onclick="window.open('poverty.html','MsgWindow', 'width=800,height=600,top=200,left=1000');">Detail Poverty</button>
+        </p>
+        
+        <p style="font-size:8px;">
+            <!--<strong>Change Factors:</strong><br>-->
+            <button onclick="changeY('education',150);scale(0);drawline(0);max(0);" style="font-size:15px;">Education</button>
+            <button onclick="changeY('income',0.09);scale(1);drawline(1);max(1);">Income</button>
+            <button onclick="changeY('hispanic',100);scale(2);drawline(2);max(2);">Hispanic</button>
+            <button onclick="changeY('asian',600);scale(3);drawline(3);max(3);" style="font-size:15px;">Asian</button>
+            <button onclick="changeY('black',100);scale(4);drawline(4);max(4);" style="font-size:15px;">Black</button>
+            <button onclick="changeY('white',100);scale(5);drawline(5);max(5);" style="font-size:15px;">White</button>
+            <button onclick="changeY('veteran',0.04);scale(6);drawline(6);max(6);" style="font-size:15px;">Veteran</button>
+            <button onclick="changeY('poverty',200);scale(7);drawline(7);max(7);" style="font-size:15px;">Poverty</button>
+            <button onclick="changeY('housingunit',0.009);scale(8);drawline(8);max(8);" style="font-size:15px;">Housing unit</button>
+        </p>
+        
+        <p style="font-size:25px;">
+           <strong>Filter by state:</strong><select id="states" onChange="filter(this.value)"></select><br />
+        </p>
+        
+        <p id="winnername" style="font-size:20px;"></p>
+    
+    </div>
+
+</body>
+</html>
